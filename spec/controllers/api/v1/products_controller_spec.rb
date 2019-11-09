@@ -4,6 +4,23 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     it { expect(response).to have_http_status(:success) }
   end
 
+  describe 'GET #show' do
+    it 'has record' do
+      product = FactoryBot.create(:product)
+      get :show, params: { id: product.id }
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq "application/json"
+    end
+
+    it 'record not found' do
+      get :show, params: { id: 100 }
+
+      expect(response).to have_http_status(404)
+      expect(response.content_type).to eq "application/json"
+    end
+  end
+
   describe 'POST #create' do
     it 'post validated params' do
       before_count = Product.count

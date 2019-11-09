@@ -4,6 +4,16 @@ class Api::V1::ProductsController < Api::V1::BaseController
     render json: { products: products }, status: 200
   end
 
+  def show
+    product = Product.find_by(id: params[:id])
+
+    if product
+      render json: { product: product }, status: 200
+    else
+      render json: { errors: 'Product not found.' }, status: 404
+    end
+  end
+
   def create
     product = Product.new(product_params)
     if product.save
