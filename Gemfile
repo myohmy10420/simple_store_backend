@@ -13,6 +13,7 @@ group :development, :test do
   gem 'pry', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'rack-cors'
+  gem 'factory_bot_rails'
 end
 
 group :development do
