@@ -7,6 +7,7 @@ gem 'rails', '~> 5.2.3'
 gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'
+gem 'rb-readline'
 
 group :development, :test do
   gem 'pry', platforms: [:mri, :mingw, :x64_mingw]
