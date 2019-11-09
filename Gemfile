@@ -12,6 +12,7 @@ gem 'rb-readline'
 group :development, :test do
   gem 'pry', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
+  gem 'rack-cors'
 end
 
 group :development do
