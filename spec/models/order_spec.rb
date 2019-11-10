@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
+  describe 'association' do
+    it { should have_many(:line_items) }
+  end
+
   describe 'validations' do
     it 'presence_of' do
       should validate_presence_of(:user_name)

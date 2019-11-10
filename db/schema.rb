@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_10_044649) do
+ActiveRecord::Schema.define(version: 2019_11_10_045751) do
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.string "name"
+    t.integer "amount"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "orders", force: :cascade do |t|
     t.string "user_name"
