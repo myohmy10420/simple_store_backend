@@ -2,19 +2,25 @@ require 'rails_helper'
 
 RSpec.describe LineItem, type: :model do
   describe 'association' do
-    it { should belong_to(:order) }
+    it do
+      should belong_to(:order)
+      should belong_to(:product)
+    end
   end
 
-  describe 'validations' do
-    it 'presence_of' do
-      should validate_presence_of(:name)
-      should validate_presence_of(:amount)
-      should validate_presence_of(:price)
-    end
+  describe 'after_create' do
+    it 'decrease_product_inventory' do
+      product = FactoryBot.create(:product)
+      order = FactoryBot.create(:order)
+      line_item = FactoryBot.create(:line_item, {
+        order_id: order.id,
+        product_id: product.id
+      })
 
-    it 'numericality_of' do
-      should validate_numericality_of(:amount).only_integer.is_greater_than(0)
-      should validate_numericality_of(:price).only_integer.is_greater_than(0)
+      before_inventory = product.inventory
+      item_amount = line_item.amount
+
+      expect(product.reload.inventory).to eq(before_inventory - item_amount)
     end
   end
 end
