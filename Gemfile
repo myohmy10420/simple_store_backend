@@ -8,6 +8,7 @@ gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'
 gem 'rb-readline'
+gem "letter_opener"
 
 group :development, :test do
   gem 'pry', platforms: [:mri, :mingw, :x64_mingw]
