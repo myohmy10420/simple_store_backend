@@ -18,6 +18,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
     end
 
     if errors.blank?
+      OrderMailer.success_notify.deliver_later!
       render json: { status: 'ok' }, status: 200
     else
       render json: { errors: errors }, status: 400

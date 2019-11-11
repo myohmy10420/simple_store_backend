@@ -24,7 +24,7 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
       expect(LineItem.count).to eq(before_line_items_count + 1)
       expect(LineItem.last.order_id).to eq(Order.last.id)
       expect(response).to have_http_status(:success)
-      expect(response.content_type).to eq 'application/json'
+      expect(response.content_type).to eq('application/json')
     end
 
     it 'amount cannot beyond inventory' do

@@ -65,4 +65,8 @@ Rails.application.configure do
       resource '*', headers: :any, methods: [:get, :post, :options]
     end
   end
+
+  # leeter opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

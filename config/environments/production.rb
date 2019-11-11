@@ -91,4 +91,21 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # leeter opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+  # DO NOT commit information in your project, set in environment
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.default_url_options = { host: 'your host' }
+  # config.action_mailer.smtp_settings = {
+  #     address: 'your mail',
+  #     port: '587',
+  #     domain: 'your mail domain',
+  #     authentication: 'plain',
+  #     user_name: 'your email',
+  #     password: 'your email password',
+  #     enable_starttls_auto: true
+  # }
 end
