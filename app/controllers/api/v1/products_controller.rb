@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < Api::V1::BaseController
   def index
-    products = Product.all
+    products = Product.all.order('created_at DESC')
     render json: { products: products }, status: 200
   end
 
