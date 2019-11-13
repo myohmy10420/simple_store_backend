@@ -4,14 +4,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
     begin
       ActiveRecord::Base.transaction do
         order = Order.create!(order_params)
-        cart_items = params[:cart_items]
-
-        cart_items.each do |item_params|
-          line_item = LineItem.new(item_params.permit(:name, :amount, :price))
-          line_item.order_id = order.id
-          line_item.product_id = item_params[:id].to_i
-          line_item.save!
-        end
+        create_cart_items_of_order(params[:cart_items], order)
       end
     rescue => error
       errors << error.message
@@ -33,5 +26,16 @@ class Api::V1::OrdersController < Api::V1::BaseController
       user_phone: params[:phone],
       total_price: params[:total_price]
     }).permit(:user_name, :user_phone, :total_price)
+  end
+
+  def create_cart_items_of_order(cart_items, order)
+    cart_items.each do |item|
+      product_id = item[:id].to_i
+
+      line_item = LineItem.new(item.permit(:name, :amount, :price))
+      line_item.order_id = order.id
+      line_item.product_id = product_id
+      line_item.save!
+    end
   end
 end
