@@ -5,7 +5,7 @@ ruby '2.4.4'
 
 gem 'rails', '~> 5.2.3'
 gem 'sqlite3'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'jbuilder', '~> 2.5'
 gem 'rb-readline'
 gem "letter_opener"
